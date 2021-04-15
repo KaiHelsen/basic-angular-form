@@ -1,0 +1,58 @@
+<head>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+<body>
+<header></header>
+<div class="w-100">
+  {{friend| json}}
+  <form #friendForm="ngForm" method="post" class="form-group has-warning col-md-4" novalidate (ngSubmit)="PostNewFriend()">
+    <label for="firstName">First Name:</label>
+    <input [(ngModel)]="friend.firstName" #firstName="ngModel" type="text" class="form-control" name="firstName"
+           id="firstName" required [class.is-invalid]="firstName.invalid && firstName.touched" pattern="^([A-Za-z])*$">
+    <div [hidden]="firstName.valid || firstName.pristine" class="alert alert-danger">Not a valid name, somehow</div>
+    <br>
+
+    <label for="lastName">Last Name:</label>
+    <input [(ngModel)]="friend.lastName" #lastName='ngModel' type="text" class="form-control" name="lastName"
+           id="lastName" required [class.is-invalid]="lastName.invalid && lastName.touched" pattern="^([A-Za-z])*$">
+    <div [hidden]="lastName.valid || lastName.pristine" class="alert alert-danger">Not a valid name, somehow</div>
+    <br>
+
+    <label for="email">Email:</label>
+    <input [(ngModel)]="friend.email" #email='ngModel' type="email" class="form-control" name="email" id="email"
+           required [class.is-invalid]="email.invalid && email.touched" pattern="">
+    <br>
+
+    <label for="telNumber">Phone Number:</label>
+    <input [(ngModel)]="friend.phoneNumber" #telNumber='ngModel' type="text" class="form-control" name="telNumber"
+           id="telNumber" required [class.is-invalid]="telNumber.invalid && telNumber.touched"
+           pattern="^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s\.\0-9]*$">
+    <div [hidden]="telNumber.valid || telNumber.pristine" class="alert alert-danger">Not a valid number, doofus</div>
+    <br>
+
+    <label for="favLang">Favourite Language:</label><br>
+    <select [(ngModel)]="friend.favLang" #favLang='ngModel' class="form-control" id="favLang" name="favLang" required
+            [class.is-invalid]="favLang.invalid && favLang.touched">
+      <option *ngFor="let language of languages" value="{{language}}">{{language}}</option>
+    </select>
+    <div>
+      <button type="submit" [disabled]="!friendForm.valid">Submit friend!</button>
+    </div>
+
+  </form>
+
+</div>
+<footer></footer>
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+</body>
+<router-outlet></router-outlet>
