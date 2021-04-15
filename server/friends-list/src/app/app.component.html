@@ -1,12 +1,13 @@
 <head>
+  <title></title>
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 </head>
 <body>
 <header></header>
 <div class="w-100">
-  {{friend| json}}
-  <form #friendForm="ngForm" method="post" class="form-group has-warning col-md-4" novalidate (ngSubmit)="PostNewFriend()">
+<!--  {{friend | json}}-->
+  <form #friendForm="ngForm" method="post" class="form-group has-warning col-md-4" novalidate (ngSubmit)="AddFriend(friend)">
     <label for="firstName">First Name:</label>
     <input [(ngModel)]="friend.firstName" #firstName="ngModel" type="text" class="form-control" name="firstName"
            id="firstName" required [class.is-invalid]="firstName.invalid && firstName.touched" pattern="^([A-Za-z])*$">
@@ -37,7 +38,7 @@
       <option *ngFor="let language of languages" value="{{language}}">{{language}}</option>
     </select>
     <div>
-      <button type="submit" [disabled]="!friendForm.valid">Submit friend!</button>
+      <button type="submit" [disabled]="!friendForm.valid" class="btn btn-success">Submit friend!</button>
     </div>
 
   </form>

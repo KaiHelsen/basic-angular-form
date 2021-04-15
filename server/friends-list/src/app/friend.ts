@@ -1,4 +1,5 @@
 import {last} from 'rxjs/operators';
+import {HttpClient} from '@angular/common/http';
 
 export class Friend {
   firstName: string;
